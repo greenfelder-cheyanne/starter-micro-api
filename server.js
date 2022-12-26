@@ -16,7 +16,7 @@ const upload = multer({ dest: "/tmp/", limits: { fileSize: "500mb" } });
 
 app.use(
   "/file-upload",
-  upload.single("file"),
+  // upload.single("file"),
   require("./function/sendToMega")
 );
 
