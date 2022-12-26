@@ -4,7 +4,7 @@ const { Storage } = require("megajs");
 const sendToMega = async (req, res) => {
   try {
     console.log("called send-to-mega");
-    const file = req.file;
+    const file = req.body.file;
     console.log(req);
     const storage = await new Storage({
       email: process.env.MEGA_EMAIL,
@@ -14,7 +14,7 @@ const sendToMega = async (req, res) => {
     // const data = fs.readFileSync(`/tmp/${file.filename}`);
 
     // const upFile = await storage.upload(file.originalname, data).complete;
-    req.pip(await storage.upload(file.originalname, data).complete);
+    req.pip(await storage.upload(file.originalname, file).complete);
     // fs.unlinkSync(file.path);
     console.log("success");
     res.status(200).json({ message: "success" });
