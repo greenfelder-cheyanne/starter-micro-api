@@ -4,6 +4,7 @@ const { Storage } = require("megajs");
 const sendToMega = async (req, res) => {
   try {
     console.log("called send-to-mega");
+    const file = req.files.file;
     const storage = await new Storage({
       email: process.env.MEGA_EMAIL,
       password: process.env.MEGA_PASSWORD,
