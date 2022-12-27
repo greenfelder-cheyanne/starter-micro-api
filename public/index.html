@@ -24,12 +24,7 @@
           data.append("file", files);
           const res = await axios.post(
             "https://zany-tick-flip-flops.cyclic.app/file-upload",
-            data,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
+            data
           );
           console.log(res.data);
         } catch (error) {
