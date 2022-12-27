@@ -11,8 +11,8 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 app.use(cors());
-app.use(express.json({ limit: "500mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "500mb" }));
+app.use(express.json({ extended: true, limit: "500mb" }));
+// app.use(bodyParser.urlencoded({ extended: true, limit: "500mb" }));
 // const upload = multer({ dest: "/tmp/", limits: { fileSize: "500mb" } });
 
 app.use(
