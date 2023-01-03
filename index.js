@@ -11,7 +11,7 @@ const connection = mongoose.connect(process.env.DB_URL, {
 connection
   .then(() => {
     console.log("db connected");
-    require("./server");
+    require("./app");
   })
   .catch((err) => {
     console.log("connection err ", err);
