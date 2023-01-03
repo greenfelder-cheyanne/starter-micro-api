@@ -1,23 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
-const passValid = require("password-validator");
-
-let schema = new passValid();
-schema
-  .is()
-  .min(8)
-  .has()
-  .uppercase()
-  .has()
-  .lowercase()
-  .has()
-  .digits()
-  .has()
-  .symbols()
-  .has()
-  .not()
-  .spaces();
 
 module.exports = async (req, res) => {
   const { username, password, name, imei } = req.body;
