@@ -1,21 +1,36 @@
 require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const multer = require("multer");
 
-const port = process.env.PORT || 5000;
+const express = require("express");
+const fs = require("fs");
+const cors = require("cors");
+const http = require("http");
+
+const socket = require("./socket");
+require("./config/db");
 
 const app = express();
+global.rootDir = __dirname;
+const server = http.createServer(app);
+let port = 5001;
+
 app.use(cors());
-app.use(express.json({ extended: true, limit: "500mb" }));
-const upload = multer({ dest: "/tmp/", limits: { fileSize: "500mb" } });
+app.use(express.json({ extended: false, limit: "250mb" }));
+// app.use(
+//   express.urlencoded({
+//     limit: "250mb",
+//     extended: true,
+//     parameterLimit: 50000,
+//   })
+// );
+// app.use(express.static("uploads"));
+// app.use("/uploads", express.static("public"));
+app.use("/chat", require("./api"));
+app.get("*", (req, res) => {
+  res.send("Welcome to Chat ver: 2.0.0");
+});
 
-app.use(
-  "/file-upload",
-  upload.single("file"),
-  require("./function/sendToMega")
-);
+socket(server, port);
 
-app.listen(port, () => {
-  console.log(`Server listening at port:${port}`);
+server.listen(port, () => {
+  console.log("server running on port: " + port);
 });
