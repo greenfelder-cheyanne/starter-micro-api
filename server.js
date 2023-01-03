@@ -5,7 +5,6 @@ module.exports = () => {
   const http = require("http");
 
   const socket = require("./socket");
-  require("./config/db");
 
   const app = express();
   global.rootDir = __dirname;
