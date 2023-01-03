@@ -3,6 +3,7 @@ node_modules/
 /uploads
 # dotenv environment variables file
 .env
+.env_bkp
 files/
 
 logs/
