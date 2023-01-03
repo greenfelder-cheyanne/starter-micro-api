@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", false);
@@ -10,6 +12,7 @@ const connection = mongoose.connect(process.env.DB_URL, {
 connection
   .then(() => {
     console.log("db connected");
+    require("./server")();
   })
   .catch((err) => {
     console.log("connection err ", err);
